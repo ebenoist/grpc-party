@@ -15,7 +15,7 @@ import (
 type service struct{}
 
 func main() {
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 9998))
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 3002))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

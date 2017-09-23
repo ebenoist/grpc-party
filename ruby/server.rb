@@ -9,7 +9,7 @@ class Server < Party::Service
   end
 end
 
-addr = "0.0.0.0:3001"
+addr = "0.0.0.0:3000"
 s = GRPC::RpcServer.new
 s.add_http2_port(addr, :this_port_is_insecure)
 s.handle(Server.new())

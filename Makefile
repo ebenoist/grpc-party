@@ -19,7 +19,23 @@ go:
 	mkdir -p go/party
 	$(PROTOC)  --go_out=plugins=grpc:go/party $(SCHEMAS)
 
-
 .PHONY: python
 python:
 	$(PYTHON_PROTOC) -I . --python_out=./python --grpc_python_out=./python $(SCHEMAS)
+
+serve: py-serve ruby-serve go-serve
+	@echo "make sure to start with make -j3 serve"
+
+py-serve:
+	python python/server.py
+
+go-serve:
+	go run go/server.go
+
+ruby-serve:
+	ruby ruby/server.rb
+
+party:
+	@go run go/client.go
+	@ruby ruby/client.rb
+	@python python/client.py
